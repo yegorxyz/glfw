@@ -52,20 +52,20 @@ pub fn build(b: *std.Build) void {
         }
     }
 
-    if (target.result.isDarwin()) {
-        // MacOS: this must be defined for macOS 13.3 and older.
-        lib.root_module.addCMacro("__kernel_ptr_semantics", "");
-
-        if (b.lazyDependency("xcode_frameworks", .{
-            .target = target,
-            .optimize = optimize,
-        })) |dep| {
-            lib.root_module.addSystemFrameworkPath(dep.path("Frameworks"));
-            lib.root_module.addSystemIncludePath(dep.path("include"));
-            lib.root_module.addLibraryPath(dep.path("lib"));
-        }
-    }
-
+    //    if (target.result.isDarwin()) {
+    //        // MacOS: this must be defined for macOS 13.3 and older.
+    //        lib.root_module.addCMacro("__kernel_ptr_semantics", "");
+    //
+    //        if (b.lazyDependency("xcode_frameworks", .{
+    //            .target = target,
+    //            .optimize = optimize,
+    //        })) |dep| {
+    //            lib.root_module.addSystemFrameworkPath(dep.path("Frameworks"));
+    //            lib.root_module.addSystemIncludePath(dep.path("include"));
+    //            lib.root_module.addLibraryPath(dep.path("lib"));
+    //        }
+    //    }
+    //
     const include_src_flag = "-Isrc";
 
     switch (target.result.os.tag) {
